@@ -1,5 +1,5 @@
 % assumes all values are in dB
-function get_maximum_comm_distance(f, tx_power, tx_eff, rx_eff, snr, noise_floor, rx_sensitivity)
+function get_maximum_comm_distance(f, tx_power, tx_eff, rx_eff, snr, rx_sensitivity, noise_floor)
     % Caluclate FSPL
     c = 3*10.^8;
     disp("FSPL(dB) = 20log10(4pif/c) + 20log10(d)");
@@ -13,8 +13,8 @@ function get_maximum_comm_distance(f, tx_power, tx_eff, rx_eff, snr, noise_floor
             lower_limit = noise_floor;
          end
      end
-     upper_limit = tx_power - tx_eff;
-     lower_limit = lower_limit - snr - rx_eff;
+     upper_limit = tx_power - abs(tx_eff);
+     lower_limit = lower_limit + snr + abs(rx_eff);
 
      margin_db = abs(lower_limit) - abs(upper_limit);
      disp("Margin = " + margin_db);
