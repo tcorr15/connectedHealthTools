@@ -33,6 +33,6 @@ function get_temperature(vs, thermistor, thermal_sensitivity, r_lead, temp_rise)
 
     % Get gain circuitry
     disp("G = (1 + 2Ra/Rg)(Rc/Rb)");
-    disp("Rg = 2k and Ra=Rb=Rc = " + gain + "k");
+    disp("Rg = 2k and Rb=Rc = " + gain + "k and Ra = " + (gain-1) + " k");
     disp("G = " + gain);
 end
