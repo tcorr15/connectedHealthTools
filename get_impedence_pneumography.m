@@ -13,11 +13,11 @@ function get_impedence_pneumography(v, i_a, i_f, rb, rd, e1_c, e1_r, e2_c, e2_r,
     [~, col] = size(dev);
     for i=1:col
         % r_delta
-        output(i, 1) = dev(i);
-        output(2*dev(end)+1-dev(i), 1) = dev(i);
+        output(i, 1) = dev(i)*rd;
+        output(2*dev(end)+1-dev(i), 1) = dev(i)*rd;
         % v_delta
-        output(i, 2) = i_a*((2*el_r) + ze1 + ze2 + rb + dev(i));
-        output(2*dev(end)+1-dev(i), 2) = i_a*((2*el_r) + ze1 + ze2 + rb + dev(i));
+        output(i, 2) = i_a*((2*el_r) + ze1 + ze2 + rb + rd*dev(i));
+        output(2*dev(end)+1-dev(i), 2) = i_a*((2*el_r) + ze1 + ze2 + rb + rd*dev(i));
         % v_out
         output(i, 3) = output(i, 2) - v_b;
         output(2*dev(end)+1-dev(i), 3) = output(2*dev(end)+1-dev(i), 2) - v_b;
